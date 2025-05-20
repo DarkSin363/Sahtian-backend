@@ -1,0 +1,155 @@
+basePath: /api/v1
+definitions:
+  api.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  model.User:
+    properties:
+      added_to_attachment_menu:
+        type: boolean
+      allows_write_to_pm:
+        type: boolean
+      avatar_url:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      is_admin:
+        type: boolean
+      is_bot:
+        type: boolean
+      is_premium:
+        type: boolean
+      language_code:
+        type: string
+      last_name:
+        type: string
+      username:
+        type: string
+      visible:
+        type: boolean
+    type: object
+  users.Features:
+    type: object
+  users.GetUserRequest:
+    properties:
+      user_id:
+        type: integer
+    type: object
+  users.GetUserResponse:
+    properties:
+      avatar_url:
+        type: string
+      display_name:
+        type: string
+      features:
+        $ref: '#/definitions/users.Features'
+      first_name:
+        type: string
+      id:
+        type: integer
+      instagram_username:
+        type: string
+      last_name:
+        type: string
+      monthly_sahtians:
+        type: integer
+      rank:
+        type: integer
+      status:
+        type: string
+      telegram_username:
+        type: string
+      today_sahtians:
+        type: integer
+      total_sahtians:
+        type: integer
+      username:
+        type: string
+      website:
+        type: string
+      x_username:
+        type: string
+    type: object
+host: api.sahtian.com
+info:
+  contact: {}
+  description: This  is a sahtian API server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: sahtian API
+  version: "1.0"
+paths:
+  /users/getUser:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: GetUserRequest
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/users.GetUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.GetUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/api.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.ErrorResponse'
+      summary: Get user
+      tags:
+      - users
+  /users/init:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Referral ID
+        in: query
+        name: referral_id
+        type: integer
+      - description: UTM Source
+        in: query
+        name: utm_source
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/api.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.ErrorResponse'
+      summary: Initialize user
+      tags:
+      - users
+swagger: "2.0"

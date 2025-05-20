@@ -1,0 +1,21 @@
+debug:
+  enabled: false
+  user_id: ""
+logger:
+  level: "debug"
+  output: "stdout"
+  format: "text"
+  name: "sahtian"
+http_server:
+  listen: "0.0.0.0:11080"
+  cors:
+    allow_origins: "*"
+    allow_methods: "GET,HEAD,PUT,POST"
+database:
+  username: "root"
+  password: "example"
+  database: "mongo"
+  host: "mongo:27017"
+telegram:
+  token: ""
+  app_url:  ""

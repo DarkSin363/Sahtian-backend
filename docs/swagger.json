@@ -1,0 +1,237 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This  is a sahtian API server.",
+        "title": "sahtian API",
+        "contact": {},
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "api.sahtian.com",
+    "basePath": "/api/v1",
+    "paths": {
+        "/users/getUser": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get user",
+                "parameters": [
+                    {
+                        "description": "GetUserRequest",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/users.GetUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/users.GetUserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/init": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Initialize user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Referral ID",
+                        "name": "referral_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "UTM Source",
+                        "name": "utm_source",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.User": {
+            "type": "object",
+            "properties": {
+                "added_to_attachment_menu": {
+                    "type": "boolean"
+                },
+                "allows_write_to_pm": {
+                    "type": "boolean"
+                },
+                "avatar_url": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_admin": {
+                    "type": "boolean"
+                },
+                "is_bot": {
+                    "type": "boolean"
+                },
+                "is_premium": {
+                    "type": "boolean"
+                },
+                "language_code": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "visible": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "users.Features": {
+            "type": "object"
+        },
+        "users.GetUserRequest": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "users.GetUserResponse": {
+            "type": "object",
+            "properties": {
+                "avatar_url": {
+                    "type": "string"
+                },
+                "display_name": {
+                    "type": "string"
+                },
+                "features": {
+                    "$ref": "#/definitions/users.Features"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "instagram_username": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "monthly_sahtians": {
+                    "type": "integer"
+                },
+                "rank": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "telegram_username": {
+                    "type": "string"
+                },
+                "today_sahtians": {
+                    "type": "integer"
+                },
+                "total_sahtians": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                },
+                "x_username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+
+.idea/
+
+tmp/
+
+*.backup
+/backup/
+/test/backup/
+/bin/
+/.netrc
