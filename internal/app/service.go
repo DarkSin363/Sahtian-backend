@@ -2,7 +2,9 @@ package app
 
 import (
 	"github.com/BigDwarf/sahtian/internal/log"
+	"github.com/BigDwarf/sahtian/internal/repository"
 	"github.com/BigDwarf/sahtian/internal/service/auth"
+	"github.com/BigDwarf/sahtian/internal/service/clients"
 	"github.com/BigDwarf/sahtian/internal/service/telegram"
 	"github.com/BigDwarf/sahtian/internal/service/users"
 )
@@ -43,4 +45,16 @@ func (app *ServerApplication) TelegramService() *telegram.Service {
 	}
 
 	return app.telegramService
+}
+
+func (app *ServerApplication) ClientService() *clients.Service {
+	if app.clientService != nil {
+		return app.clientService
+	}
+
+	db := app.Database().Database(app.conf.Database.Database)
+	repo := repository.NewClientRepository(db)
+	app.clientService = clients.NewService(repo)
+
+	return app.clientService
 }

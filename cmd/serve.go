@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/BigDwarf/sahtian/internal/app"
 	"github.com/BigDwarf/sahtian/internal/config"
 
@@ -22,7 +23,6 @@ var serverCmd = &cobra.Command{
 	SilenceErrors: true,
 	Version:       version.Version,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		log.Info("Starting server... ")
 
 		conf, err := config.Init(cfgFile)
 		if err != nil {
@@ -43,6 +43,8 @@ var serverCmd = &cobra.Command{
 
 			return errors.Wrap(err, "failed to init logger")
 		}
+
+		log.Info("Starting server... ")
 
 		defer log.Sync()
 

@@ -4,7 +4,7 @@ debug:
 logger:
   level: "debug"
   output: "stdout"
-  format: "text"
+  format: "json"
   name: "sahtian"
 http_server:
   listen: "0.0.0.0:11080"
@@ -17,5 +17,5 @@ database:
   database: "mongo"
   host: "mongo:27017"
 telegram:
-  token: ""
-  app_url:  ""
+  token: "7783122765:AAGXZQxuG_6bP4g5Pm7kLeT1WjPGjjgBjG0"
+  app_url:  "https://darksin363.github.io/Sahtian-backend/"

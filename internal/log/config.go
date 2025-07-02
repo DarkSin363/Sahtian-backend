@@ -49,7 +49,7 @@ type Config struct {
 	Name   string `mapstructure:"name"`
 }
 
-func init() { //nolint:gochecknoinits
+/*func init() { //nolint:gochecknoinits
 	cfg := &Config{
 		Level:  "info",
 		Format: TextFormat,
@@ -58,11 +58,12 @@ func init() { //nolint:gochecknoinits
 	}
 
 	_ = Init(cfg)
-}
+} */
 
 func Init(cfg *Config) error {
 	level, err := zap.ParseAtomicLevel(cfg.Level)
 	if err != nil {
+
 		return errors.Wrapf(err, "parse log level")
 	}
 

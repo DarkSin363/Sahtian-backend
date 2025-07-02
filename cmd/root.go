@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/BigDwarf/sahtian/version"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 var (
@@ -22,7 +22,7 @@ func rootCmd() *cobra.Command {
 	}
 
 	cmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config/default.yml)")
-	viper.SetDefault("license", "none")
+	//viper.SetDefault("license", "none")
 
 	cmd.AddCommand(serverCmd)
 	return cmd

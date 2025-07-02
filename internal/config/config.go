@@ -3,9 +3,10 @@ package config
 import (
 	"github.com/BigDwarf/sahtian/internal/log"
 
+	"strings"
+
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
-	"strings"
 )
 
 type Config struct {

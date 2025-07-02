@@ -19,6 +19,7 @@ import (
 	"github.com/BigDwarf/sahtian/internal/log"
 	"github.com/BigDwarf/sahtian/internal/repository"
 	"github.com/BigDwarf/sahtian/internal/service/auth"
+	"github.com/BigDwarf/sahtian/internal/service/clients"
 	"github.com/BigDwarf/sahtian/internal/service/telegram"
 	"github.com/BigDwarf/sahtian/internal/service/users"
 )
@@ -32,6 +33,7 @@ type ServerApplication struct {
 	dbClient         *mongo.Client
 	usersRepository  *repository.UsersRepository
 	checkTaskService *telegram.Service
+	clientService    *clients.Service
 }
 
 func NewServerApplication(cfg *config.Config) *ServerApplication {
@@ -40,6 +42,14 @@ func NewServerApplication(cfg *config.Config) *ServerApplication {
 	}
 
 	srv := echo.New()
+
+	srv.Static("/static", "web/static")
+	srv.Static("/clients", "web/clients")
+
+	srv.GET("/", func(c echo.Context) error {
+		return c.Redirect(http.StatusFound, "/clients")
+	})
+
 	if cfg.EnableDocs {
 		srv.GET("/swagger/*", echoSwagger.WrapHandler)
 	}
